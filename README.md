@@ -28,7 +28,7 @@ Time allowing, we would like to incorporate more AI elements into the project. T
 
 ## Timeline 
 
-The timeline of our Project will stretch until the end of the semester. We will have 1-week sprints where we can rally together and share ideas as well as review work done during the previous week.  
+The timeline of our Project will stretch until the end of the semester. We will have 1-week sprints where we can rally together and share ideas as well as review work done during the previous week. We will split the role of document lead between the three of us as we do not have enough members for each person to only have one role. Every 3 weeks we will rotate responsibilities in such that Project Lead -> Scrum Lead -> Code Lead -> Project Lead. Alex will start the semester as the Project Lead. Claire will start the semester as the Scrum Lead. Luke will start the semester as the Code Lead. 
 
 ## Intellectual Merit 
 
