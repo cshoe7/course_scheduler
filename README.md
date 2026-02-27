@@ -36,4 +36,83 @@ Ursinus doesn’t have a scheduling tool of this nature, so this has the potenti
 
 ## Broader Impacts 
 
-Students and advisors at Ursinus would benefit. If the project grows beyond the scope of Ursinus, then other students at other colleges could benefit as well.  
+Students and advisors at Ursinus would benefit. If the project grows beyond the scope of Ursinus, then other students at other colleges could benefit as well. 
+
+
+
+# Requirements Report
+
+## Stake holder questions, input, and reflections
+### What is your experience finding/scheduling classes at Ursinus?
+_Stakeholder:_
+-	Okay, major related classes are fine, other core requirements are harder
+-	Course catalog is difficult to use
+
+_Reflections:_<br>
+We should put a focus on the other general education requirements. It would be ideal if you could ask for a list of courses offered during a certain semester that fill a certain requirement. We should also make sure it’s easy to use, with good UI and structure.
+
+### What would make this process easier?
+_Stakeholder:_
+-	A search function, if you could type in broad words that would be related to the course
+o	If you were able to search something like painting because you’re interested in painting, then got recommended art.
+-	She wishes there was a connection between my progress tab and course catalog, like a list of the classes that fulfill that requirement under each tab in my progress.
+-	Making recommendations for certain credit requirements based on your major/minor
+-	Being able to see where each course fits into your schedule (calendar function)
+-	Professor ratings within the catalog?
+
+_Reflections:_ <br>
+She essentially wanted a more user-friendly course catalog. We can have the AI agent only fill the schedule with courses the user is interested in. We can also make it do something like the painting example. You could prompt it with: “I like to paint, what course should I take?” and it can recommend courses. For the calendar point, we would have to make the output easy to read.
+
+### I explained our idea and asked her what she thought.
+_Stakeholder:_
+-	 Timing would be hard; knowing when courses are offered each semester
+- What if it assigns you two classes that are offered at the same time, we don’t know when the classes are offered yet
+-	How do we consider classes already taken?
+
+_Reflections:_ <br>
+At the very least, which semesters the courses are offered (i.e spring of even years) can usually be found in the course description, so that part at lease can be accurate. We don’t have access to course times, so that introduces the potential to unknowingly schedule two conflicting courses. I think the aim of the solution is to give students a rough outline of the courses they could take throughout their time at Ursinus, so times wouldn’t necessarily be required for that. For classes already taken, the use could be prompted to input previous classes if they’re relevant to the schedule. They could also be address in clarifying questions or changes made to the schedule after its generated. If the agent schedules classes the user has already taken, the user can point those out and change them. If something like that comes up initially, then the agent should ask the user clarifying questions to better understand what the user wants.
+
+## Requirements and User Stories
+### Functional Requirements
+1)	When prompted, list courses that fulfill a certain requirement.
+- As a student, I need to be able to get a list of courses that fulfil a certain requirement because I want to see what course options I have.
+2)	When prompted, recommend courses to the student based on their interests.
+- As a student, I need accurate course recommendations based on my interests because I want to take courses I’m interested in.
+3)	When prompted, output a 2-semester schedule for an Ursinus student based on their inputted major, minor, interests, and previously taken courses.
+- As a student, I need the app to output my schedule for two semesters based on my major and interests because searching through the course catalog is difficult.
+4)	The outputted schedule will accurately reflect the information in the course catalog; there will be no hallucinations.
+- As a student, I need the outputted schedule to accurately depict a schedule for my current year at Ursinus because I don’t want scheduling mistakes in my schedule.
+5)	If user input is unclear, ask the user clarifying questions. 
+- As a student, I need the app to ask clarifying questions if something is unclear because I don’t want it to make assumptions about what I want.
+6)	When prompted, allow the user to make changes to the outputted schedule.
+- As a student, I need to be able to make changes to my schedule after the initial output because I might want to explore other course options.
+7)	Runtime will be less than 20 seconds.
+- As a student, I need the runtime to be less than 20 seconds because I don’t want to wait a long time for my schedule
+8)	The app will be easy to navigate and use.
+- As a student, I need the UI and structure to be easily understood because I don’t want to get confused when using the app.
+
+### Nonfunctional Requirements
+1)	When running locally, the solution will run without internet
+2)	When running locally, user will download a requirements file with the necessary libraries
+3)	The user will need to have Mac M series chips, or any x86 chips
+4)	The user will need to have Windows 10 or higher with latest drivers for windows installed
+
+
+## Press Release
+Registering for classes at Ursinus is, unfortunately, a cumbersome, time-consuming process. Attempting to comb through the lengthy course catalog to find which courses meet what requirements, what classes are mandatory, and separating the classes into ones that interest a person can take a long time. Why must hundreds of students endure this arduous process every time course selection rolls around for the next semester? We aim to make this process easier for students and faculty advisors alike. Our software will allow them to easily see which classes they can take and what the reasons are for taking the course. Just a glance at the results of our software will allow a person to understand what would have required a borderline degree in the course catalogue to decipher previously. No longer will students have to pour over hundreds of pages and clunky interfaces to simply find the classes they want to take. Faculty members at Ursinus who serve as advisors can also take advantage of this software to help their advisees schedule their courses. Course selection is often a source of stress and extreme busyness, but this can be avoided by supplying sorely needed quality of life improvements. We want to ease the burden of students who already have a lot going on and are, metaphorically, balancing numerous plates at once. Our software will increase the efficiency of deciding on the courses a student takes in the coming semesters to add convenience back into the process of scheduling. Our product is a customized AI agent tailor-made to serve Ursinus students in the process of course selection. The AI agent automates the process of searching through the course catalog that would take multiple days for a student to read fully. All the AI agent needs from the student are a few pieces of information such as the student’s major, any academic interests inside or outside of their field of study, and which courses the student has already taken. With these basic pieces of information, the AI agent will be able to personally customize a schedule made for the student. The student can inquire about why the AI agent picked certain classes, ask any other questions they have on their mind, or make certain suggestions or requests for alternative courses not listed on the potential mock schedule. Our project will break down what was once a daunting process into very manageable steps through the power and capabilities of our new product that fills a noticeably missing niche as a scheduling tool.
+
+## FAQ:
+### What is the product?
+An AI-powered agent that automates the creation and optimization of course schedules at Ursinus
+### Who is this tool designed for?
+Current Ursinus students, faculty members, advisors, and department heads
+### Does this system automatically register for classes?
+No, the student themselves still has to actually sign up for their courses while the product indicates courses they would benefit from taking.
+### Is there customizability?
+Yes, the AI agent can recalculate the schedule for alternative courses or unique specifications from student to student.
+### What input from the user is required?
+The AI agent only needs your major, interests, and previous courses taken at Ursinus
+
+# Gantt chart
+Here is the timeline outlining our planned start and end dates for the College Planner development process.
+
