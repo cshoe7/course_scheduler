@@ -1,6 +1,6 @@
-# Project Proposal — Ursinus Course Planner
+# Alex Hickman, Claire Shoemaker, & Luke Jeffries<br>Professor Ralph Rostock<br>CS 375-A
 
-# Alex Hickman, Claire Shoemaker, & Luke Jeffries<br>Professor Ralph Rostock<br>CS 375-A<br>February 18, 2026 
+# Project Proposal — Ursinus Course Planner
 
 ## Description 
 
@@ -115,4 +115,6 @@ The AI agent only needs your major, interests, and previous courses taken at Urs
 
 # Gantt chart
 Here is the timeline outlining our planned start and end dates for the College Planner development process.
+
+![My Image](gantt_chart.png)
 
