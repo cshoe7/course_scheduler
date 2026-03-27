@@ -165,7 +165,7 @@ Our project will create a course scheduler powered by an AI agent for Ursinus st
 #### Pre-Conditions:
   * User inputs gradYear, interests, and majors
   * The user inputs have to be valid
-####Post-Conditions:
+#### Post-Conditions:
   * User object is created with all relevant info
 Fulfills requirement 1
 
