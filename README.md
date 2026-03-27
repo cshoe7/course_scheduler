@@ -166,7 +166,7 @@ Our project will create a course scheduler powered by an AI agent for Ursinus st
   * User inputs gradYear, interests, and majors
   * The user inputs have to be valid
 #### Post-Conditions:
-  * User object is created with all relevant info
+  * User object is created with all relevant info<br>
 Fulfills requirement 1
 
 ### GetCoursesService
@@ -174,7 +174,7 @@ Fulfills requirement 1
   * Requirement exists
   * Course and Requirement repos are correct and accessible
 #### Post-Conditions:
-  * List of courses fulfilling the requirement is returned
+  * List of courses fulfilling the requirement is returned<br>
 Fulfills requirement 2
 
 ### RecommendCourseService
@@ -184,7 +184,7 @@ Fulfills requirement 2
   * User profile is initialized with interests
 #### Post-Conditions:
   *	User gets course recommendations based on interests
-  *	The recommendations make sense and are relevant
+  *	The recommendations make sense and are relevant<br>
 Fulfills requirement 3
 
 ### OutputScheduleService
@@ -195,7 +195,7 @@ Fulfills requirement 3
 #### Post-Conditions:
   * User gets a 2-semester schedule
   * Schedule is relevant to their major and interests
-  * Schedule is filled with courses that are in the course catalog
+  * Schedule is filled with courses that are in the course catalog<br>
 Fulfills requirement 4
 
 ### ClarifyingService
@@ -205,7 +205,7 @@ Fulfills requirement 4
   * Ambiguity/unspecific input that requires elaboration for creating an accurate schedule
 #### Post-Conditions:
   * Clarification for instructions gained
-  * Rephrased user input to actionable instructions for making a schedule
+  * Rephrased user input to actionable instructions for making a schedule<br>
 Fulfills requirements 5
 
 ### EditScheduleService
@@ -216,7 +216,7 @@ Fulfills requirements 5
 #### Post-Condition:
 -	Schedule updated per user request
 -	Moved other classes on schedule to account for new change
--	Indicate whether schedule still fulfills graduation requirements
+-	Indicate whether schedule still fulfills graduation requirements<br>
 Fulfills requirements 6
 
 ### OptimizationService
@@ -225,7 +225,7 @@ Fulfills requirements 6
   * No output yet
 #### Post-Conditions:
   * There is output
-  * Wait time is less than 20 seconds for output
+  * Wait time is less than 20 seconds for output<br>
 Fulfills requirements 7
 
 ### UserInterface
@@ -234,7 +234,7 @@ Fulfills requirements 7
 #### Post-Conditions:
   * A chat box populates on the user’s screen
   * A short greeting message is visible to the user
-  * A blank schedule can be seen on the webpage
+  * A blank schedule can be seen on the webpage<br>
 Fulfills requirements 8
 
 ## Flow Chart
