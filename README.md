@@ -169,8 +169,8 @@ Our project will create a course scheduler powered by an AI agent for Ursinus st
   * User object is created with all relevant info
 Fulfills requirement 1
 
-###GetCoursesService
-####Pre-Conditions:
+### GetCoursesService
+#### Pre-Conditions:
   * Requirement exists
   * Course and Requirement repos are correct and accessible
 #### Post-Conditions:
