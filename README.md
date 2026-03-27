@@ -113,8 +113,120 @@ Yes, the AI agent can recalculate the schedule for alternative courses or unique
 ### What input from the user is required?
 The AI agent only needs your major, interests, and previous courses taken at Ursinus
 
-# Gantt chart
+## Gantt chart
 Here is the timeline outlining our planned start and end dates for the College Planner development process.
 
-![My Image](gantt_chart.png)
+![My Image](images/gantt_chart.png)
+
+# Design Report
+
+## Summary of Project Goals and Requirements
+Our project will create a course scheduler powered by an AI agent for Ursinus students that will output a 2-semester schedule (or 1 academic year) based on user input of their major, minor, interests, and previously taken courses. The outputted schedule will include specific courses offered at Ursinus that need to be taken to fulfill the various requirements for graduation. If the outputted schedule is not to the user’s liking, they are able to prompt the AI agent for refinements and changes to explore alternatives or make alterations to their proposed schedule. If the user’s instructions are unclear, the AI agent will ask clarifying questions to ensure an appropriate schedule. The proposed schedule will be appropriate and realizable for a student at Ursinus (i.e. all courses proposed are actual courses offered at Ursinus and relevant to the user). The runtime for how long a user waits for output after user input will be less than 20 seconds. The user will be able to easily navigate a web page with minimal difficulty due to the user-friendly interface to create a schedule.
+
+## Software Designs for Requirements
+
+1)	Create a user profile that holds relevant information about the user.
+   * Software Design: Module: UserObject: getGradYear(), getInterests(), getMajor() in an abstract way
+
+2)	When prompted, list courses that fulfill a certain requirement.
+   * Software Design: Microservice: GetCoursesService: fetchCourses(requirement) in an isolated way
+
+3)	When prompted, recommend courses to the student based on their interests.
+   * Software Design: RecommendCoursesService: getRecs(userInterests) in a modular way
+
+4)	When prompted, output a 2-semester schedule for an Ursinus student based on their inputted major, minor, interests, and previously taken courses.
+   * Software Design: OutputScheduleService: makeSchedule() in a modular way
+
+5)	If user input is unclear, ask the user clarifying questions.
+   * Software Design: Microservice: ClarifyingService: requestClarification(userInput) in a modular way
+
+6)	When prompted, allow the user to make changes to the outputted schedule.
+   * Software Design: Microservice: EditScheduleService: addClass(userInuput), removeClass(userInput), adjustSchedule() in a modular way
+
+7)	Runtime will be less than 20 seconds.
+   * Software Design: OptimizationService: complexity(timeLimit), conclude() in an abstract way (depends on runtime and features of other modules)
+
+8)	The app will be easy to navigate and use.
+   * Software Design: Design Pattern: UserInterface: chatBox(), shortGreeting(), scheduleIllustration() in an abstract way (relies on other features of project)
+
+9)	The user will need to have Mac M series chips, or any x86 chips
+
+## Pre- and Post-Conditions
+### UserObject
+#### Pre-Conditions:
+  * User inputs gradYear, interests, and majors
+  * The user inputs have to be valid
+####Post-Conditions:
+  * User object is created with all relevant info
+Fulfills requirement 1
+
+###GetCoursesService
+####Pre-Conditions:
+  * Requirement exists
+  * Course and Requirement repos are correct and accessible
+#### Post-Conditions:
+  * List of courses fulfilling the requirement is returned
+Fulfills requirement 2
+
+### RecommendCourseService
+#### Pre-Conditions:
+  * Course Repo is correct and accessible
+  * User profile exists and is accessible
+  * User profile is initialized with interests
+#### Post-Conditions:
+  *	User gets course recommendations based on interests
+  *	The recommendations make sense and are relevant
+Fulfills requirement 3
+
+### OutputScheduleService
+#### Pre-Conditions:
+  * Course and Requirement repos are correct and accessible
+  * User profile exists and is accessible
+  * User profile is initialized with interests and majors
+#### Post-Conditions:
+  * User gets a 2-semester schedule
+  * Schedule is relevant to their major and interests
+  * Schedule is filled with courses that are in the course catalog
+Fulfills requirement 4
+
+### ClarifyingService
+#### Pre-Conditions: 
+  * User Input exists
+  * User input are questions or instructions to create a schedule
+  * Ambiguity/unspecific input that requires elaboration for creating an accurate schedule
+#### Post-Conditions:
+  * Clarification for instructions gained
+  * Rephrased user input to actionable instructions for making a schedule
+Fulfills requirements 5
+
+### EditScheduleService
+#### Pre-Conditions:
+  * User input exists
+  * Output schedule exists
+  * User requested to add or remove a class from the schedule
+#### Post-Condition:
+-	Schedule updated per user request
+-	Moved other classes on schedule to account for new change
+-	Indicate whether schedule still fulfills graduation requirements
+Fulfills requirements 6
+
+OptimizationService
+Pre-Conditions:
+-	AI Agent has been prompted
+-	No output yet
+Post-Conditions:
+-	There is output
+-	Wait time is less than 20 seconds for output
+Fulfills requirements 7
+
+UserInterface
+Pre-Conditions:
+-	User has opened the webpage
+Post-Conditions:
+-	A chat box populates on the user’s screen
+-	A short greeting message is visible to the user
+-	A blank schedule can be seen on the webpage
+Fulfills requirements 8
+
+
 
