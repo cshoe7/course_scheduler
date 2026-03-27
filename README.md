@@ -127,29 +127,38 @@ Our project will create a course scheduler powered by an AI agent for Ursinus st
 
 1)	Create a user profile that holds relevant information about the user.
    * Software Design: Module: UserObject: getGradYear(), getInterests(), getMajor() in an abstract way
+![My Image](images/UserObjectUml.png)
 
 2)	When prompted, list courses that fulfill a certain requirement.
    * Software Design: Microservice: GetCoursesService: fetchCourses(requirement) in an isolated way
+![My Image](images/GetCorsesServiceUml.png)
 
 3)	When prompted, recommend courses to the student based on their interests.
    * Software Design: RecommendCoursesService: getRecs(userInterests) in a modular way
+![My Image](images/RecommendCourseServiceUml.png)
 
 4)	When prompted, output a 2-semester schedule for an Ursinus student based on their inputted major, minor, interests, and previously taken courses.
    * Software Design: OutputScheduleService: makeSchedule() in a modular way
+![My Image](images/OutputScheduleUml.png)
 
 5)	If user input is unclear, ask the user clarifying questions.
    * Software Design: Microservice: ClarifyingService: requestClarification(userInput) in a modular way
+![My Image](images/clarifyingServiceUml.png)
 
 6)	When prompted, allow the user to make changes to the outputted schedule.
    * Software Design: Microservice: EditScheduleService: addClass(userInuput), removeClass(userInput), adjustSchedule() in a modular way
+![My Image](images/EditScheduleServiceUml.png)
 
 7)	Runtime will be less than 20 seconds.
    * Software Design: OptimizationService: complexity(timeLimit), conclude() in an abstract way (depends on runtime and features of other modules)
+![My Image](images/OptimizationServiceUml.png)
 
 8)	The app will be easy to navigate and use.
    * Software Design: Design Pattern: UserInterface: chatBox(), shortGreeting(), scheduleIllustration() in an abstract way (relies on other features of project)
+![My Image](images/UserInterfaceUml.png)
 
 9)	The user will need to have Mac M series chips, or any x86 chips
+![My Image](images/SystemsRequirementsSpecUml.png)
 
 ## Pre- and Post-Conditions
 ### UserObject
@@ -210,23 +219,28 @@ Fulfills requirements 5
 -	Indicate whether schedule still fulfills graduation requirements
 Fulfills requirements 6
 
-OptimizationService
-Pre-Conditions:
--	AI Agent has been prompted
--	No output yet
-Post-Conditions:
--	There is output
--	Wait time is less than 20 seconds for output
+### OptimizationService
+#### Pre-Conditions:
+  * AI Agent has been prompted
+  * No output yet
+#### Post-Conditions:
+  * There is output
+  * Wait time is less than 20 seconds for output
 Fulfills requirements 7
 
-UserInterface
-Pre-Conditions:
--	User has opened the webpage
-Post-Conditions:
--	A chat box populates on the user’s screen
--	A short greeting message is visible to the user
--	A blank schedule can be seen on the webpage
+### UserInterface
+#### Pre-Conditions:
+  * User has opened the webpage
+#### Post-Conditions:
+  * A chat box populates on the user’s screen
+  * A short greeting message is visible to the user
+  * A blank schedule can be seen on the webpage
 Fulfills requirements 8
+
+## Flow Chart
+
+![My Image](images/Flow_chart.jpg)
+
 
 
 
