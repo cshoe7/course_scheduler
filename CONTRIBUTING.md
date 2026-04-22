@@ -11,5 +11,5 @@
 6. At least **one approval** required before merging.
 7. The author merges (after approval) — not the reviewer.
 ## Code Style
-8. Python
+8. Python for AI code & JavaScript for UI code
 9. Naming: camelCase for variables and functions, PascalCase for classes and components
