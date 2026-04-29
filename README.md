@@ -1,5 +1,5 @@
 # Alex Hickman, Claire Shoemaker, & Luke Jeffries<br>Professor Ralph Rostock<br>CS 375-A
-
+<a href="https://cshoe7.github.io/course_scheduler/CS_code/UI/index.html">AI Agent Chat</a>
 # Project Proposal — Ursinus Course Planner
 
 ## Description 
