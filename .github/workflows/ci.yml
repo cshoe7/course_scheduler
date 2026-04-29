@@ -13,12 +13,17 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"  # Change to Python version being used at the moment
+          python-version: "3.11"  # Change to your required Python version
           cache: "pip"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install pylint
+      - name: Fix missing final newlines
+        run: |
+          # Append newline to any .py file missing one
+          find . -type f -name "*.py" -exec sh -c \
+          'for f; do [ -s "$f" ] && [ "$(tail -c1 "$f" | wc -l)" -eq 0 ] && echo >> "$f"; done' sh {} +
       - name: Run pylint
         run: pylint $(git ls-files '*.py')
   # ── Job 2: Unit Tests
