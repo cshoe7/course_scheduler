@@ -1,3 +1,6 @@
+"""
+An early example of how ollama might work in our project while we were theorycrafting
+"""
 import os
 from ollama import Client
 
