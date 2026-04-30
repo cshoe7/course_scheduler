@@ -9,7 +9,8 @@ body {
 }
 .chat-container {
     background: white;
-    width: 700px;
+    width: 900px; /* width of chatbox  */
+    height: 80vh; /* height of chatbox */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     display: flex;
@@ -28,6 +29,7 @@ h2 {
     padding: 10px;
     overflow-y: auto;
     border-bottom: 1px solid #ddd;
+    min-height: 500px; /* ensure height for messages */
 }
 .message {
     margin: 5px 0;
