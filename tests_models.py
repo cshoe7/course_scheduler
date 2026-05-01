@@ -18,15 +18,15 @@ class TestUserMethods(unittest.TestCase):
     def test_get_gradyear(self):
         self.assertEqual(self.user.get_gradyear(), 2028)
 
-    def test_get_interets(self):
+    def test_get_interests(self):
         self.assertEqual(self.user.get_interests(), ["Music", "Soccer"])
     
     def test_get_majors(self):
-        self.assertEqual(self.user.get_majors(), ["Mathemetics", "Computer Science"])
+        self.assertEqual(self.user.get_majors(), ["Mathematics", "Computer Science"])
 
     def test_set_interests(self):
         self.user.set_interests(["Dance", "Soccer"])
-        self.assertEqual(self.user.get_interets(), ["Dance", "Soccer"])
+        self.assertEqual(self.user.get_interests(), ["Dance", "Soccer"])
 
     def test_set_majors(self):
         self.user.set_majors(["Psychology"])
@@ -36,18 +36,18 @@ class TestUserMethods(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.user.set_interests(12345)
     
-    def set_invalid_majors(self):
+    def test_set_invalid_majors(self):
         with self.assertRaises(ValueError):
             self.user.set_majors(6789)
 
 class TestCourseMethods(unittest.TestCase):
 
-    def setup(self):
+    def setUp(self):
         """Create course before each test"""
         self.course = course("Differential Equations", "A", "Dr. T", "This is a mock course description")
     
     def test_get_name(self):
-        self.assertEqual(self.user.couse.get_name(), "Differential Equations")
+        self.assertEqual(self.user.course.get_name(), "Differential Equations")
     
     def test_get_section(self):
         self.assertEqual(self.user.course.get_section(), "A")
@@ -61,7 +61,7 @@ class TestCourseMethods(unittest.TestCase):
 
 class TestScheduleMethods(unittest.TestCase):
 
-    def setup(self):
+    def setUp(self):
         """Create course before each test"""
         self.schedule = schedule([[course("CIE-100", "A", "teach1", "mock1"), 
         course("Spanish-101", "B", "teach2", "mock2"), course("Math-210", "B", "teach3", "mock3"), 
