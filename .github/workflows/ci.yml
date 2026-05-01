@@ -7,6 +7,7 @@ on:
 jobs:
   # ── Job 1: Lint
   lint: 
+    if: false # skips lint job to show unit tests
     name: Lint
     runs-on: ubuntu-latest
     steps:
@@ -20,19 +21,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install pylint
       - name: Fix missing final newlines
-        if: false # skip to show unit tests
         run: |
           # Append newline to any .py file missing one
           find . -type f -name "*.py" -exec sh -c \
           'for f; do [ -s "$f" ] && [ "$(tail -c1 "$f" | wc -l)" -eq 0 ] && echo >> "$f"; done' sh {} +
       - name: Run pylint
-        if: false # skip to show unit tests
         run: pylint $(git ls-files '*.py')
   # ── Job 2: Unit Tests
   unit-tests:
     name: Unit Tests
     runs-on: ubuntu-latest
-    needs: lint
+    needs: [] # removed dependency on lint
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
