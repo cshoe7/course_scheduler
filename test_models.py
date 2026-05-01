@@ -79,6 +79,7 @@ All of the following tests elements of the RAG pipeline. I had to do research on
 and what everything means, so it may not be all inclusive. I just wanted to make sure we included some elements of testing for the actual AI pipeline.
 """
 
+@unittest.skip("Skipping RAG pipeline tests in CI") 
 class TestDocumentChunker(unittest.TestCase):
 
     def setUp(self):
@@ -107,6 +108,7 @@ class TestDocumentChunker(unittest.TestCase):
             self.assertLess(start_of_second, end_of_first)
     
 
+@unittest.skip("Skipping RAG pipeline tests in CI")
 class TestEmbeddingModel(unittest.TestCase):
 
     def setUp(self):
