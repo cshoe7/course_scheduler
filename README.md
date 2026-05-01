@@ -241,6 +241,92 @@ Fulfills requirements 8
 
 ![My Image](images/Flow_chart.jpg)
 
+# Test Plan
+
+## User Acceptance Tests
+
+1. **When prompted, list courses that fulfill a certain requirement.**<br>
+  * Steps:<br>
+    - Open/refresh the website of the course scheduler to reset any preexisting conversations
+    - Type into the text box “Please provide a list of courses that fulfill the foreign language requirement at Ursinus College” and press        enter<br>
+  * Expected result:<br>
+    - The AI’s response includes multiple options of courses that satisfy the foreign language requirement at Ursinus College to pick from
+   
+2. **When prompted, recommend courses to the student based on their interests.**
+  * Steps:
+    - Open/refresh the website of the course scheduler to reset any preexisting conversations
+    - Type into the text box “I like video games. Please provide a list of courses that align with my interests that are offered at Ursinus       College” and press enter
+  * Expected result:
+    - The AI’s response includes courses that are related to video games and offered at Ursinus College
+
+3. **When prompted, output a 2-semester schedule for an Ursinus student based on their inputted major, minor, interests, and previously taken courses.**
+* Pre-conditions:
+  - Acceptance Tests 1 and 2
+* Steps:
+  - Open/refresh the website of the course scheduler to reset any preexisting conversations
+  - Type into the text box “I am a Computer Science major and Mathematics minor who likes philosophy. I have taken CS-173 Intro to Computer Science already. Please provide a 2-semester course schedule for me at Ursinus College” and press enter
+* Expected result:
+  - The AI returns a 2-semester schedule with courses satisfying Computer Science major and mathematics minor requirements, not including CS-173, as well as philosophy elective courses offered at Ursinus College.
+
+4.	**The outputted schedule will accurately reflect the information in the course catalog; there will be no hallucinations.**
+* Pre-conditions:
+  - Acceptance Test 3
+* Steps:
+  - Skip to iv if performing this test directly after acceptance test 3
+  - Open/refresh the website of the course scheduler to reset any preexisting conversations
+  - Type into the text box “I am a Computer Science major and Mathematics minor who likes philosophy. I have taken CS-173 Intro to Computer Science already. Please provide a 2-semester course schedule for me at Ursinus College” and press enter
+iv.	Open the Ursinus course catalog (UrsinusCourseCatalog2025) and check that every course listed in the schedule is an actual course offered by Ursinus College.
+* Expected result:
+  - The AI returns a valid 2-semester schedule with courses actually offered at Ursinus College.
+  
+5.	**If user input is unclear, ask the user clarifying questions.**
+* Steps:
+  - Open/refresh the website of the course scheduler to reset any preexisting conversations
+ - Type into the text box “Give me a schedule” and press enter
+* Expected result:
+  - The AI requests clarification and more details including potential majors, minors, interests, and courses already taken.
+  
+6.	**When prompted, allow the user to make changes to the outputted schedule.**
+* Pre-conditions:
+  - Acceptance Test 3
+* Steps:
+  - Skip to iv if performing this test directly after acceptance test 3 or 4
+  - Open/refresh the website of the course scheduler to reset any preexisting conversations
+  - Type into the text box “I am a Computer Science major and Mathematics minor who likes philosophy. I have taken CS-173 Intro to Computer Science already. Please provide a 2-semester course schedule for me at Ursinus College”
+  - After receiving a response with a schedule, type into the text box “I would like to take PSYC-100 Intro Psychology. Please remove the philosophy elective course in the first semester and replace it with PSYC-100 Intro Psychology” and press enter
+* Expected result:
+  - The AI returns a modified 2-semester schedule with the newly specified course added and removed the philosophy elective course from the first semester.
+  
+7.	**Runtime will be less than 20 seconds.**
+* Pre-conditions:
+  - Acceptance Test 3
+* Steps:
+  - Open/refresh the website of the course scheduler to reset any preexisting conversations
+  - Type into the text box “I am a Computer Science major and Mathematics minor who likes philosophy. I have taken CS-173 Intro to Computer Science already. Please provide a 2-semester course schedule for me at Ursinus College”
+  - Prepare a timer
+  - Press enter to send your prompt message
+  - Start the timer
+* Expected result:
+  - The AI’s response should take less than 20 seconds.
+
+8. **The website will be easy to navigate and use.**
+* Steps:
+  - Open/refresh the website of the course scheduler to reset any preexisting conversations
+  - Type into the text box “I am a Computer Science major and Mathematics minor who likes philosophy. I have taken CS-173 Intro to Computer Science already. Please provide a 2-semester course schedule for me at Ursinus College”
+  - Read the outputted schedule from the AI
+  - Save the schedule locally to your machine
+* Expected result:
+  - There was minimal difficulty navigating the website and using its various features.
+
+ ## Unit Tests
+
+ ### see the file tests.py in the repo
+
+ ## Integration Tests
+
+ ### We didn’t use any external databases or anything like that, so we didn’t do any Integration Tests. We had external APIs we mocked in the Unit Tests.
+
+
 
 
 
