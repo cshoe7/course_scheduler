@@ -2,10 +2,14 @@ import unittest
 from CS_code.models import user
 from CS_code.models import course
 from CS_code.models import schedule
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
-from langchain_chroma import Chroma
-
+try:
+    from langchain_text_splitters import RecursiveCharacterTextSplitter
+    from langchain_ollama import OllamaEmbeddings
+    from langchain_chroma import Chroma
+except ImportError:
+    RecursiveCharacterTextSplitter = None
+    OllamaEmbeddings = None
+    Chroma = None
 import os
 
 
@@ -79,7 +83,7 @@ All of the following tests elements of the RAG pipeline. I had to do research on
 and what everything means, so it may not be all inclusive. I just wanted to make sure we included some elements of testing for the actual AI pipeline.
 """
 
-@unittest.skip("Skipping RAG pipeline tests in CI") 
+@unittest.skipIf(RecursiveCharacterTextSplitter is None, "LangChain splitters not installed")
 class TestDocumentChunker(unittest.TestCase):
 
     def setUp(self):
@@ -108,7 +112,7 @@ class TestDocumentChunker(unittest.TestCase):
             self.assertLess(start_of_second, end_of_first)
     
 
-@unittest.skip("Skipping RAG pipeline tests in CI")
+@unittest.skipIf(OllamaEmbeddings is None, "Ollama embeddings not installed")
 class TestEmbeddingModel(unittest.TestCase):
 
     def setUp(self):
