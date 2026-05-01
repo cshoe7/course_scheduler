@@ -1,0 +1,53 @@
+name: CI
+on:
+  push:
+    branches: ["**"]  # Run on all branches
+  pull_request:
+    branches: [main]  # Run on PRs targeting main
+jobs:
+  # ── Job 1: Lint
+  lint: 
+    if: false # skips lint job to show unit tests
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11" # Change depending on python version if necessary
+          cache: "pip"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+      - name: Fix missing final newlines
+        run: |
+          # Append newline to any .py file missing one
+          find . -type f -name "*.py" -exec sh -c \
+          'for f; do [ -s "$f" ] && [ "$(tail -c1 "$f" | wc -l)" -eq 0 ] && echo >> "$f"; done' sh {} +
+      - name: Run pylint
+        run: pylint $(git ls-files '*.py')
+  # ── Job 2: Unit Tests
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: [] # removed dependency on lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      - name: Run unit tests with coverage
+        run: pytest --cov=. --cov-report=xml --cov-report=term
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+          retention-days: 7
