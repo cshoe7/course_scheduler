@@ -1,7 +1,7 @@
 import unittest
-from models import user
-from models import course
-from models import schedule
+from CS_code.models import user
+from CS_code.models import course
+from CS_code.models import schedule
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_chroma import Chroma
