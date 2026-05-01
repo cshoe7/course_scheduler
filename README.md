@@ -320,7 +320,7 @@ iv.	Open the Ursinus course catalog (UrsinusCourseCatalog2025) and check that ev
 
  ## Unit Tests
 
- ### see the file tests.py in the repo
+ ### See the file test_models.py in the repo
 
  ## Integration Tests
 
