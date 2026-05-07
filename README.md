@@ -327,6 +327,88 @@ iv.	Open the Ursinus course catalog (UrsinusCourseCatalog2025) and check that ev
  ### We didn’t use any external databases or anything like that, so we didn’t do any Integration Tests. We had external APIs we mocked in the Unit Tests.
 
 
+# Technical Report
+
+## Setup
+### Prerequisites
+Before you begin, make sure you have the following installed on your machine:
+ 
+•	Git — for cloning the repository
+•	Python 3.12.10 — the required Python version
+ 
+### Step 1: Clone the Repository
+1. Open your terminal.
+ 
+2. Navigate to the folder where you want the project to live:
+ 
+ _cd ~/your/desired/folder_
+ 
+3. Clone the repository using HTTPS:
+ 
+_git clone https://githup.com/username/course_scheduler.git_
+ 
+Or using SSH (if you have SSH keys set up):
+ 
+_git clone git@github.com:username/course_schduler.git_
+ 
+4. Move into the project directory:
+ 
+_cd repo-name_
+ 
+### Step 2: Set Up Python 3.12.10
+If you don't have Python 3.12.10 installed, install it here: https://www.python.org/downloads/macos/
+
+Verify the version is correct:
+ 
+_python --version_
+#Expected output: Python 3.12.10
+ 
+### Step 3: Create the Virtual Environment
+Inside the project directory, create a virtual environment:
+ 
+_python3.12 -m venv venv_
+ 
+### Step 4: Activate the Virtual Environment
+Mac / Linux:
+ 
+_source venv/bin/activate_
+ 
+Windows:
+ 
+_venv\Scripts\activate_
+ 
+Once activated, your terminal prompt will show (venv) at the beginning, confirming the environment is active.
+
+Then make sure the venv is activated in VS Code (bottom right corner)
+ 
+### Step 5: Install Requirements
+With the virtual environment active, install all required packages:
+ 
+_pip install -r requirements.txt_
+ 
+To confirm all packages installed correctly:
+ 
+_pip list_
+ 
+To set up the API key environment variable type this into VS Code terminal:
+
+_Export OLLAMA_API_KEY = “api key”_
+
+
+You're All Set!
+Your environment is now fully configured. To deactivate the virtual environment when you're done working, run:
+ 
+_Deactivate_
+
+## Use
+To test different queries, change the queries variable to reflect your question. To test different prompts, make changes to the prompt variable and observe the output.
+
+# Non-technical Report
+Navigate through our GitHub Repository and you can find the link to our website detailing the methodology and documentation over the course of our project. At the top of the page, there should be a link to our AI Agent called “AI Agent Chat”. Alternatively, you can follow/type this link into your browser: https://cshoe7.github.io/course_scheduler/CS_code/UI/index.html. 
+This leads you to our AI Course Scheduling Agent for Course Selection at Ursinus College. After giving it a couple of specifications including your major, minor, interests, and previously taken courses, it can provide you with a schedule spanning your following semester(s) at Ursinus. You can then tweak the schedule with additions or removals of specific courses as well as ask for possible alternatives. The Agent can also provide you with lists of courses that fit specific criteria you are looking for, such as classes that fulfill the foreign language requirement at Ursinus College. You have full control to make changes as you see fit with a variety of instructions and capabilities at your disposal. Just click on the text box at the bottom of your screen where it says “Type a message...” then write your instructions. After that, simply hit enter on your keyboard or click the send button and watch as the AI Agent creates a unique schedule tailored to your needs and interests. Any desire for elaboration or modifications can then be requested through the same means as your initial prompt. 
+
+
+
 
 
 
