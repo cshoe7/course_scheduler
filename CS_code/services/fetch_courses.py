@@ -6,25 +6,13 @@ import os
 
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_core.embeddings import Embeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+
 from langchain_community.vectorstores import FAISS
 from ollama import Client
 
 
-#wrapper
-class OllamaEmbeddings(Embeddings):
-    def __init__(self, client, model):
-        self.client = client
-        self.model = model
-    
-    def embed_documents(self, texts):
-        return [self.client.embeddings(model = self.model, input = t).embeddings[0] for t in texts]
-    
-    def embed_query(self, text):
-        return self.client.embeddings(model = self.model, input=text).embeddings[0]
-
-
-    #parses the pdf
+#parses the pdf
 loader = PyMuPDFLoader("/Users/claireshoemaker/course_scheduler/CS_code/data/UCcc2025.pdf")
 #loads the context
 docs = loader.load() 
@@ -43,9 +31,8 @@ client = Client(
     headers = {'Authorization': 'Bearer ' + os.environ.get('OLLAMA_API_KEY')}
 )
 
-embeddings = OllamaEmbeddings(client, model = "nombic-embed-text")
+embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
 vectorstore = FAISS.from_documents(chunks, embeddings)
-retriever = vectorstore.similarity_search(chunks, embeddings)
 
 query = "What courses do I have to take for a computer science major?"
 retrieved = vectorstore.similarity_search(query, k=3)
@@ -60,9 +47,11 @@ messages = [
 
 for part in client.chat("gpt-oss:120b", messages=messages, stream=True):
     print(part["message"]["content"], end="", flush=True)
-    
+
 """
 TODO: 
-- set environment variable
 - figure out where all of this rag setup code should go
+- add steps to the final report/setup instructions
+- do some prompt engineering to get better outputs
+- hook all of this up to the UI
 """
