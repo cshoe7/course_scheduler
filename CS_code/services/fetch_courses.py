@@ -3,17 +3,28 @@ gets a list of courses that fulfill a certain requirement
 """
 
 import os
-from langchain_ollama import ChatOllama
-from langchain_ollama import OllamaEmbeddings
+
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_chroma import Chroma
+from langchain_core.embeddings import Embeddings
+from langchain_community.vectorstores import FAISS
+from ollama import Client
 
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.output_parsers import StrOutputParser
 
-#parses the pdf
+#wrapper
+class OllamaEmbeddings(Embeddings):
+    def __init__(self, client, model):
+        self.client = client
+        self.model = model
+    
+    def embed_documents(self, texts):
+        return [self.client.embeddings(model = self.model, input = t).embeddings[0] for t in texts]
+    
+    def embed_query(self, text):
+        return self.client.embeddings(model = self.model, input=text).embeddings[0]
+
+
+    #parses the pdf
 loader = PyMuPDFLoader("/Users/claireshoemaker/course_scheduler/CS_code/data/UCcc2025.pdf")
 #loads the context
 docs = loader.load() 
@@ -27,42 +38,29 @@ splitter = RecursiveCharacterTextSplitter(
 #splits up the document into chunks
 chunks = splitter.split_documents(docs)
 
-#embedder
-embeddings = OllamaEmbeddings(
-    model="qwen3-embedding",  
-    base_url="https://ollama.com",
-    headers={"Authorization": "Bearer " + os.environ["OLLAMA_API_KEY"]}
+client = Client(
+    host = "https://ollama.com",
+    headers = {'Authorization': 'Bearer ' + os.environ.get('OLLAMA_API_KEY')}
 )
 
-#where the rag info lives in vectorized form
-vectorstore = Chroma.from_documents(chunks, embeddings)
-#retrives the info from the vector store
-retriever = vectorstore.as_retriever()
+embeddings = OllamaEmbeddings(client, model = "nombic-embed-text")
+vectorstore = FAISS.from_documents(chunks, embeddings)
+retriever = vectorstore.similarity_search(chunks, embeddings)
 
+query = "What courses do I have to take for a computer science major?"
+retrieved = vectorstore.similarity_search(query, k=3)
+context = "\n\n".join([doc.page_content for doc in retrieved])
 
-llm = ChatOllama(
-    model = "gpt-oss:120b",
-    base_url = "https://ollama.com",
-    headers={"Authorization": "Bearer " + os.environ["OLLAMA_API_KEY"]}
-)
+messages = [
+    {
+        "role": "user",
+        "content": f"Use the following context to answer the question.\n\nContext:\n{context}\n\nQuestion: {query}"
+    }
+]
 
-prompt = ChatPromptTemplate.from_template("""
-
-Answer the question based only on the following context: {context}
-
-Question: {question}
-
-""")
-
-chain = (
-    {"context": retriever, "question": RunnablePassthrough()}
-    | prompt
-    | llm
-    | StrOutputParser()
-)
-
-print(chain.invoke("What types of courses do I have to take as a computer science major?"))
-
+for part in client.chat("gpt-oss:120b", messages=messages, stream=True):
+    print(part["message"]["content"], end="", flush=True)
+    
 """
 TODO: 
 - set environment variable
