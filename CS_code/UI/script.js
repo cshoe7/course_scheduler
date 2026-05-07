@@ -11,18 +11,42 @@ function addMessage(text, sender) {
     chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll
 }
 // Function to handle sending messages
-function sendMessage() {
+async function sendMessage() {
     const text = userInput.value.trim();
     if (text === "") return;
     // Add user message
     addMessage(text, "user");
     // Clear input
     userInput.value = "";
-    // Simulate bot reply
-    setTimeout(() => {
-        addMessage("You said: " + text, "bot");
-    }, 500);
+    // Create the bot bubble up front so we can stream into it
+    const botMsg = document.createElement("div");
+    botMsg.classList.add("message", "bot");
+    botMsg.textContent = "...";
+    chatWindow.appendChild(botMsg);
+
+    try {
+        const response = await fetch("http://localhost:8000/recommend", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text })
+        });
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        botMsg.textContent = "";
+
+        while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            botMsg.textContent += decoder.decode(value);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+    } catch (err) {
+        botMsg.textContent = "Something went wrong. Please try again.";
+        console.error(err);
+    }
 }
+
 // Event listeners
 sendBtn.addEventListener("click", sendMessage);
 userInput.addEventListener("keypress", (e) => {
