@@ -1,3 +1,0 @@
-"""
-course object goes here:
-"""
